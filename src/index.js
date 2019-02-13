@@ -13,7 +13,7 @@
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
 function returnFirstArgument(a) {
-    return(a);
+    return a;
 }
 
 /*
@@ -60,7 +60,7 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 13
  */
 function returnCounter(number = 0) {
-    return function f(){
+    return function f() {
         return ++number;
     }
 }
@@ -76,8 +76,8 @@ function returnCounter(number = 0) {
  */
 function returnArgumentsArray() {
     var array = [];
-    for(var i = 0; i < arguments.length; i++){
-        array[i] = arguments[i];
+    for(var i = 0; i < arguments.length; i++) {
+        array.push(arguments[i]);
     }
     return array;
 }
