@@ -36,7 +36,7 @@ function reduce(array, fn, initial) {
   var a = initial || array[0];
   var i;
 
-  if (i = initial)
+  if (initial)
     i = 0;
   else
     i = 1;
