@@ -11,6 +11,10 @@
    createDivWithText('loftschool') // создаст элемент div, поместит в него 'loftschool' и вернет созданный элемент
  */
 function createDivWithText(text) {
+  var block = document.createElement('div');
+  block.textContent = text;
+
+  return block;
 }
 
 /*
@@ -22,6 +26,7 @@ function createDivWithText(text) {
    prepend(document.querySelector('#one'), document.querySelector('#two')) // добавит элемент переданный первым аргументом в начало элемента переданного вторым аргументом
  */
 function prepend(what, where) {
+  where.insertBefore(what, where.firstChild);
 }
 
 /*
@@ -44,6 +49,15 @@ function prepend(what, where) {
    findAllPSiblings(document.body) // функция должна вернуть массив с элементами div и span т.к. следующим соседом этих элементов является элемент с тегом P
  */
 function findAllPSiblings(where) {
+  let mass = [];
+
+  for (let i = 0; i < where.childNodes.length; i++) {
+    if (where.childNodes[i].tagName === 'P') {
+      mass.push(where.childNodes[i - 1]);
+    }
+  }
+
+  return mass;
 }
 
 /*
@@ -64,13 +78,13 @@ function findAllPSiblings(where) {
    findError(document.body) // функция должна вернуть массив с элементами 'привет' и 'loftschool'
  */
 function findError(where) {
-    var result = [];
+  var result = [];
 
-    for (var child of where.childNodes) {
-        result.push(child.innerText);
-    }
+  for (var child of where.children) {
+    result.push(child.innerText);
+  }
 
-    return result;
+  return result;
 }
 
 /*
@@ -86,6 +100,11 @@ function findError(where) {
    должно быть преобразовано в <div></div><p></p>
  */
 function deleteTextNodes(where) {
+  for (var child of where.childNodes) {
+    if (child.nodeType === 3) {
+      where.removeChild(child);
+    }
+  }
 }
 
 /*
@@ -100,6 +119,16 @@ function deleteTextNodes(where) {
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
 function deleteTextNodesRecursive(where) {
+  for (let i = 0; i < where.childNodes.length; i++) {
+    const knot = where.childNodes[i];
+
+    if (knot.nodeType === 3) {
+      knot.remove();
+      i--;
+    } else if (knot.childNodes.length) {
+      deleteTextNodesRecursive(knot);
+    }
+  }
 }
 
 /*
