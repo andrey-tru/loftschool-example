@@ -30,10 +30,10 @@ function delayPromise(seconds) {
  */
 function loadAndSortTowns() {
   return fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
-  .then(response => response.json())
-  .then(city => Array.from(city).sort((a, b) => {
-    a.name.localeCompare(b.name);
-  }));
+    .then(response => response.json())
+    .then(city => Array.from(city).sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    }));
 }
 
 export {

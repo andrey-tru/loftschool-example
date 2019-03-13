@@ -45,10 +45,10 @@ loadTowns().then(city => {
  */
 function loadTowns() {
   return fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
-  .then(response => response.json())
-  .then(city => Array.from(city).sort((a, b) => {
-    a.name.localeCompare(b.name);
-  }));
+    .then(response => response.json())
+    .then(city => Array.from(city).sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    }));
 }
 
 /*
@@ -75,13 +75,15 @@ const filterInput = homeworkContainer.querySelector('#filter-input');
 /* Блок с результатами поиска */
 const filterResult = homeworkContainer.querySelector('#filter-result');
 
+console.log(filterInput);
 filterInput.addEventListener('keyup', function() {
   // это обработчик нажатия кливиш в текстовом поле
   filterResult.innerHTML = '';
   let signify = filterInput.value.trim();
 
+
   if (signify === '') {
-    return;
+    return
   }
 
   for (var town of towns) {
